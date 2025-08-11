@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from 'sonner';
 import { Heart, Settings, BarChart3, MessageSquare, Image, Shield, Database } from 'lucide-react';
+import { UserIcon } from 'lucide-react';
 
 // Components
 import { Sidebar } from './components/Sidebar';
