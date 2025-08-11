@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Video, Phone, MessageCircle } from 'lucide-react';
 import clsx from 'clsx';
@@ -100,42 +100,6 @@ export const HeartButton: React.FC<HeartButtonProps> = ({
     onClick();
   };
 
-  // Breathing animation variants
-  const breathingVariants = {
-    initial: { scale: 1 },
-    animate: {
-      scale: reduceMotion ? 1 : [1, 1.05, 1],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  // Pulse animation variants
-  const pulseVariants = {
-    initial: { scale: 0, opacity: 0.7 },
-    animate: {
-      scale: reduceMotion ? 0 : [0, 2],
-      opacity: [0.7, 0],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  // Hover animation variants
-  const hoverVariants = {
-    initial: { scale: 1 },
-    hover: {
-      scale: reduceMotion ? 1 : 1.1,
-      transition: { duration: 0.2 },
-    },
-  };
-
   const positionStyles = {
     position: 'fixed' as const,
     ...position,
@@ -156,9 +120,10 @@ export const HeartButton: React.FC<HeartButtonProps> = ({
             ? '0 8px 32px rgba(0, 0, 0, 0.12)'
             : '0 4px 16px rgba(0, 0, 0, 0.08)',
         }}
-        variants={hoverVariants}
-        initial="initial"
-        animate={isHovered ? 'hover' : 'initial'}
+        initial={{ scale: 1 }}
+        animate={{
+          scale: isHovered ? (reduceMotion ? 1 : 1.1) : 1,
+        }}
         whileTap={reduceMotion ? {} : { scale: 0.95 }}
         onClick={handleClick}
         onMouseEnter={() => setIsHovered(true)}
@@ -172,11 +137,19 @@ export const HeartButton: React.FC<HeartButtonProps> = ({
         {/* Breathing pulse background */}
         <motion.div
           className={clsx('absolute inset-0 rounded-full', sizeClasses[size])}
-          style={{ backgroundColor: getPulseColor() }}
-          variants={breathingVariants}
-          initial="initial"
-          animate="animate"
-          opacity={0.1}
+          style={{ 
+            backgroundColor: getPulseColor(),
+            opacity: 0.1 
+          }}
+          initial={{ scale: 1 }}
+          animate={{
+            scale: reduceMotion ? 1 : [1, 1.05, 1],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
 
         {/* Expanding pulse rings */}
@@ -186,17 +159,31 @@ export const HeartButton: React.FC<HeartButtonProps> = ({
               <motion.div
                 className={clsx('absolute inset-0 rounded-full border-2', sizeClasses[size])}
                 style={{ borderColor: getPulseColor() }}
-                variants={pulseVariants}
-                initial="initial"
-                animate="animate"
+                initial={{ scale: 0, opacity: 0.7 }}
+                animate={{
+                  scale: [0, 2],
+                  opacity: [0.7, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                }}
               />
               <motion.div
                 className={clsx('absolute inset-0 rounded-full border-2', sizeClasses[size])}
                 style={{ borderColor: getPulseColor() }}
-                variants={pulseVariants}
-                initial="initial"
-                animate="animate"
-                transition={{ delay: 0.5 }}
+                initial={{ scale: 0, opacity: 0.7 }}
+                animate={{
+                  scale: [0, 2],
+                  opacity: [0.7, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                  delay: 0.5,
+                }}
               />
             </>
           )}
