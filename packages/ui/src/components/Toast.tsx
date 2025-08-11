@@ -119,7 +119,6 @@ export const Toast: React.FC<ToastProps> = ({
       y: 0,
       scale: 1,
       transition: {
-        type: 'spring',
         stiffness: 300,
         damping: 30,
       },

@@ -144,7 +144,6 @@ export const Modal: React.FC<ModalProps> = ({
       scale: 1,
       y: 0,
       transition: {
-        type: 'spring',
         stiffness: 300,
         damping: 30,
       },

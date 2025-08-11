@@ -158,7 +158,7 @@ export class AuthService {
               .eq('id', resourceId)
               .single();
             
-            return pairing && (pairing.student_id === userId || pairing.parent_id === userId);
+            return !!(pairing && (pairing.student_id === userId || pairing.parent_id === userId));
           }
           return false;
 
@@ -170,9 +170,9 @@ export class AuthService {
               .eq('id', resourceId)
               .single();
             
-            return pairing && 
+            return !!(pairing && 
                    pairing.status === 'active' && 
-                   (pairing.student_id === userId || pairing.parent_id === userId);
+                   (pairing.student_id === userId || pairing.parent_id === userId));
           }
           return false;
 
@@ -189,7 +189,7 @@ export class AuthService {
    * Generate service token for server-to-server communication
    */
   generateServiceToken(payload: Record<string, any>, expiresIn: string = '1h'): string {
-    return jwt.sign(payload, this.jwtSecret, { expiresIn });
+    return jwt.sign({ ...payload, expiresIn }, this.jwtSecret);
   }
 }
 
@@ -203,15 +203,5 @@ export function extractBearerToken(authHeader: string | undefined): string | nul
   return authHeader.substring(7);
 }
 
-/**
- * Generate a secure random string
- */
-export function generateSecureToken(length: number = 32): string {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
+
 

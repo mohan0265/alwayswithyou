@@ -57,7 +57,7 @@ export const Tabs: React.FC<TabsProps> = ({
 }) => {
   const [internalActiveTab, setInternalActiveTab] = useState(tabs[0]?.id || '');
   const [indicatorStyle, setIndicatorStyle] = useState<React.CSSProperties>({});
-  const tabRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   const activeTab = controlledActiveTab ?? internalActiveTab;
   const activeTabData = tabs.find(tab => tab.id === activeTab);

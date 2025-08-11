@@ -108,7 +108,7 @@ export const HeartButton: React.FC<HeartButtonProps> = ({
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       },
     },
   };
@@ -122,7 +122,7 @@ export const HeartButton: React.FC<HeartButtonProps> = ({
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
   };

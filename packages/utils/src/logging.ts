@@ -244,10 +244,17 @@ export function logSecurityEvent(
     ? LogLevel.ERROR 
     : LogLevel.WARN;
 
-  logger.log(level, `Security event: ${event}`, {
-    severity,
-    ...context,
-  });
+  if (level === LogLevel.ERROR) {
+    logger.error(`Security event: ${event}`, undefined, {
+      severity,
+      ...context,
+    });
+  } else {
+    logger.warn(`Security event: ${event}`, {
+      severity,
+      ...context,
+    });
+  }
 }
 
 /**

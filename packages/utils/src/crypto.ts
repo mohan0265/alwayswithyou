@@ -135,7 +135,7 @@ export function createFingerprint(userAgent: string, ipAddress: string): string 
  * Generate a time-based one-time password (TOTP) secret
  */
 export function generateTotpSecret(): string {
-  return randomBytes(20).toString('base32');
+  return randomBytes(20).toString('base64');
 }
 
 /**
@@ -179,10 +179,10 @@ export function generateSecureRandom(min: number, max: number): number {
   
   let randomValue;
   do {
-    const randomBytes = randomBytes(bytesNeeded);
+    const randomBytesBuffer = randomBytes(bytesNeeded);
     randomValue = 0;
     for (let i = 0; i < bytesNeeded; i++) {
-      randomValue = (randomValue << 8) + randomBytes[i];
+      randomValue = (randomValue << 8) + randomBytesBuffer[i];
     }
   } while (randomValue >= threshold);
   
