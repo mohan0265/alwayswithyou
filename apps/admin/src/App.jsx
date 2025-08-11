@@ -40,7 +40,7 @@ const navigationItems = [
   },
   {
     title: 'Users',
-    icon: UsersIcon,
+    icon: UserIcon,
     path: '/users',
     description: 'Students, parents, and admins'
   },
