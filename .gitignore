@@ -1,0 +1,34 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build caches & outputs
+**/.turbo/
+**/.next/
+**/dist/
+**/build/
+**/.vite/
+**/.parcel-cache/
+
+# TypeScript
+**/*.tsbuildinfo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Netlify
+.netlify/
+
+# Logs
+logs/
+**/*.log
