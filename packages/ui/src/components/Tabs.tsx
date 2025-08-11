@@ -181,7 +181,9 @@ export const Tabs: React.FC<TabsProps> = ({
           return (
             <button
               key={tab.id}
-              ref={(el) => (tabRefs.current[tab.id] = el)}
+              ref={(el) => {
+                tabRefs.current[tab.id] = el;
+              }}
               className={clsx(
                 getTabClasses(tab, isActive),
                 fullWidth && orientation === 'horizontal' && 'flex-1',
