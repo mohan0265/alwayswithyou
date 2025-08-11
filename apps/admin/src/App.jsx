@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from 'sonner';
-import { Heart, Users, Settings, BarChart3, MessageSquare, Image, Shield, Database } from 'lucide-react';
+import { Heart, Users as UsersIcon, Settings, BarChart3, MessageSquare, Image, Shield, Database } from 'lucide-react';
 
 // Components
 import { Sidebar } from './components/Sidebar';
@@ -39,7 +39,7 @@ const navigationItems = [
   },
   {
     title: 'Users',
-    icon: Users,
+    icon: UsersIcon,
     path: '/users',
     description: 'Students, parents, and admins'
   },
